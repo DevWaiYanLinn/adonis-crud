@@ -23,8 +23,14 @@ import User from 'App/Models/User'
 
 Route.get('/auth/login', 'AuthController.getLogin').as('AuthController.getLogin')
 Route.post('/auth/login', 'AuthController.postLogin').as('AuthController.postLogin')
+Route.get('/auth/register', 'AuthController.getRegister').as('AuthController.getRegister')
+Route.post('/auth/register', 'AuthController.postRegister').as('AuthController.postRegister')
 
 Route.get('/users', 'UsersController.getAll').as('UsersController.getAll').middleware('isAdmin')
+Route.get('/users/create', 'UsersController.create')
+  .as('UsersController.create')
+  .middleware('isAdmin')
+Route.post('/users/store', 'UsersController.store').as('UsersController.store').middleware('isAdmin')
 
 Route.get('/demo-login', async ({ auth, response }) => {
   const user = await User.query().where('user_type', 'admin').firstOrFail()

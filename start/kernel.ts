@@ -44,5 +44,4 @@ Server.middleware.register([
 */
 Server.middleware.registerNamed({
   isAdmin:() => import('App/Middleware/AdminRequest')
-  
 })
