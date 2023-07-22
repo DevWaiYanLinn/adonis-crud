@@ -1,9 +1,11 @@
+import { response } from 'express'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import LoginValidator from 'App/Validators/LoginValidator'
 import RegisterValidator from 'App/Validators/RegisterValidator'
 
 export default class AuthController {
+  
   public getLogin({ view }: HttpContextContract) {
     return view.render('auth/login')
   }
@@ -26,6 +28,11 @@ export default class AuthController {
     const email = request.input('email')
     const password = request.input('password')
     await auth.use('web').attempt(email, password)
+    response.redirect().toRoute('UsersController.getAll')
+  }
+
+  public async postLogout({ auth, response }: HttpContextContract) {
+    await auth.use('web').logout()
     response.redirect().toRoute('UsersController.getAll')
   }
 }

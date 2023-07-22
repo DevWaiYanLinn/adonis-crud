@@ -25,12 +25,18 @@ Route.get('/auth/login', 'AuthController.getLogin').as('AuthController.getLogin'
 Route.post('/auth/login', 'AuthController.postLogin').as('AuthController.postLogin')
 Route.get('/auth/register', 'AuthController.getRegister').as('AuthController.getRegister')
 Route.post('/auth/register', 'AuthController.postRegister').as('AuthController.postRegister')
+Route.post('/auth/logout', 'AuthController.postLogout').as('AuthController.postLogout')
 
-Route.get('/users', 'UsersController.getAll').as('UsersController.getAll').middleware('isAdmin')
-Route.get('/users/create', 'UsersController.create')
-  .as('UsersController.create')
-  .middleware('isAdmin')
-Route.post('/users/store', 'UsersController.store').as('UsersController.store').middleware('isAdmin')
+Route.group(() => {
+  Route.get('/users', 'UsersController.getAll').as('UsersController.getAll');
+  Route.get('/users/create', 'UsersController.create').as('UsersController.create')
+  Route.post('/users/store', 'UsersController.store').as('UsersController.store')
+
+  Route.get('/posts/create', 'PostsController.create').as('PostsController.create')
+  Route.get('/posts', 'PostsController.getAll').as('PostsController.getAll')
+  Route.post('/posts/store', 'PostsController.store').as('PostsController.store');
+
+}).middleware('isAdmin')
 
 Route.get('/demo-login', async ({ auth, response }) => {
   const user = await User.query().where('user_type', 'admin').firstOrFail()
