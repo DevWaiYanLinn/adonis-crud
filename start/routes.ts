@@ -43,12 +43,3 @@ Route.get('/demo-login', async ({ auth, response }) => {
   await auth.use('web').login(user)
   response.redirect().toRoute('UsersController.getAll')
 })
-
-Route.get('/',({response}) => {
-   response.redirect().toRoute('UsersController.getAll')
-})
-
-Route.get('/demo-logout', async ({ auth, response }) => {
-  await auth.use('web').logout()
-  response.redirect().toRoute('UsersController.getAll')
-})
