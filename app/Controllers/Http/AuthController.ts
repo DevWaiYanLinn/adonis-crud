@@ -1,4 +1,3 @@
-import { response } from 'express'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import LoginValidator from 'App/Validators/LoginValidator'
