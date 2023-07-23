@@ -19,7 +19,6 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import User from 'App/Models/User'
 
 Route.get('/auth/login', 'AuthController.getLogin').as('AuthController.getLogin')
 Route.post('/auth/login', 'AuthController.postLogin').as('AuthController.postLogin')
