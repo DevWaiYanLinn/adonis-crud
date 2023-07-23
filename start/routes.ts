@@ -17,7 +17,6 @@
 | import './routes/customer''
 |
 */
-
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/auth/login', 'AuthController.getLogin').as('AuthController.getLogin')
