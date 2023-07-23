@@ -5,7 +5,7 @@
   "scripts": {
     "start:dev": "node ace serve --watch",
     "build": "node ace build --production",
-    "start": "npm install --save reflect-metadata & npm ci --production & node server.js",
+    "start": "node server.js",
     "test": "node ace test",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
