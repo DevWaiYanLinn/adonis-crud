@@ -37,9 +37,3 @@ Route.group(() => {
   Route.post('/posts/store', 'PostsController.store').as('PostsController.store');
 
 }).middleware('isAdmin')
-
-Route.get('/demo-login', async ({ auth, response }) => {
-  const user = await User.query().where('user_type', 'admin').firstOrFail()
-  await auth.use('web').login(user)
-  response.redirect().toRoute('UsersController.getAll')
-})
