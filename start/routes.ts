@@ -27,12 +27,17 @@ Route.post('/auth/register', 'AuthController.postRegister').as('AuthController.p
 Route.post('/auth/logout', 'AuthController.postLogout').as('AuthController.postLogout')
 
 Route.group(() => {
-  Route.get('/users', 'UsersController.getAll').as('UsersController.getAll');
+  Route.get('/users', 'UsersController.getAll').as('UsersController.getAll')
   Route.get('/users/create', 'UsersController.create').as('UsersController.create')
   Route.post('/users/store', 'UsersController.store').as('UsersController.store')
+  Route.get('/users/edit/:id', 'UsersController.edit').as('UsersController.edit')
+  Route.put('/users/:id', 'UsersController.update').as('UsersController.update')
+  Route.delete('/users/:id', 'UsersController.destroy').as('UsersController.destroy')
 
   Route.get('/posts/create', 'PostsController.create').as('PostsController.create')
   Route.get('/posts', 'PostsController.getAll').as('PostsController.getAll')
-  Route.post('/posts/store', 'PostsController.store').as('PostsController.store');
-
+  Route.post('/posts/store', 'PostsController.store').as('PostsController.store')
+  Route.get('/posts/edit/:id', 'PostsController.edit').as('PostsController.edit')
+  Route.put('/posts/:id', 'PostsController.update').as('PostsController.update')
+  Route.delete('/posts/:id', 'PostsController.destroy').as('PostsController.destroy')
 }).middleware('isAdmin')
